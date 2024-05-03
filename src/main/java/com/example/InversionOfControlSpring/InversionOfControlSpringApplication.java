@@ -20,10 +20,14 @@ public class InversionOfControlSpringApplication {
 		that manages all your beans for you. This is where you can find them too if you need them.*/
 
 		ApplicationContext applicationContext = SpringApplication.run(InversionOfControlSpringApplication.class, args);
-		/*both are fine to get the bean */
+
+
 		//KitchenService kitchenService = (KitchenService) applicationContext.getBean("kitchenService");
-		 		KitchenService kitchenService = (KitchenService) applicationContext.getBean(KitchenService.class);
-		RestaurantService restaurantService = new RestaurantService(kitchenService);
+
+
+		// here as we annotated RestaurantService as @Service we can get RestaurantService from ApplicationContext
+		// so dont even need to get KitchenService (as SpringBoot does a component scanning which will search for components like @Service and will know the dependencies)
+		RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
 		restaurantService.doProcess();
 	}
 

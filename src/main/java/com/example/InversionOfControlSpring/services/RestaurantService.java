@@ -1,5 +1,8 @@
 package com.example.InversionOfControlSpring.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class RestaurantService {
 
     private KitchenService kitchenService;
